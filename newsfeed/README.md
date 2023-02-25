@@ -8,7 +8,8 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine
 2. Install the dependencies by running `npm install`
-3. Start the app by running `npm run dev`
+3. Generate relay files by running `npm run relay`
+4. Start the app by running `npm run dev`
 
 The application will now be running at [`localhost:3000`](http://localhost:3000). This application also has [GraphiQL](https://github.com/graphql/graphiql) setup so that you can run test queries against the schema. Navigate to [`localhost:3000/playground`](http://localhost:3000/playground) to try it out.
 
