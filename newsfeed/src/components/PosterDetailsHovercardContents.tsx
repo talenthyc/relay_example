@@ -1,15 +1,12 @@
 import * as React from "react";
-import { useLazyLoadQuery, useFragment } from "react-relay";
+import type { PreloadedQuery } from "react-relay";
+import { useFragment, usePreloadedQuery } from "react-relay";
 import { graphql } from "relay-runtime";
 import Image from "./Image";
-import Timestamp from "./Timestamp";
-
-import { usePreloadedQuery } from "react-relay";
-import type { PreloadedQuery } from "react-relay";
-
-import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
-import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
 import OrganizationKind from "./OrganizationKind";
+import Timestamp from "./Timestamp";
+import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
+import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
 
 export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
@@ -71,13 +68,13 @@ function PosterDetailsHovercardContentsBody({
       <ul className="posterHovercard__details">
         <li>
           Joined <Timestamp time={data.joined} />
-          {data.location != null && <li>{data.location.name}</li>}
-          {data.organizationKind != null && (
-            <li>
-              <OrganizationKind kind={data.organizationKind} />
-            </li>
-          )}
         </li>
+        {data.location != null && <li>{data.location.name}</li>}
+        {data.organizationKind != null && (
+          <li>
+            <OrganizationKind kind={data.organizationKind} />
+          </li>
+        )}
       </ul>
       <div className="posterHovercard__buttons">
         <button>Friend</button>
