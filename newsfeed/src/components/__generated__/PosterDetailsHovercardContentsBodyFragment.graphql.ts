@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c1b4226ce465ed92dff46545d290e952>>
+ * @generated SignedSource<<b780cc076b35df8225533610048bf0fc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,24 +10,25 @@
 
 import { Fragment, ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type PosterBylineFragment$data = {
+export type PosterDetailsHovercardContentsBodyFragment$data = {
   readonly id: string;
+  readonly joined: string | null;
   readonly name: string | null;
   readonly profilePicture: {
     readonly " $fragmentSpreads": FragmentRefs<"ImageFragment">;
   } | null;
-  readonly " $fragmentType": "PosterBylineFragment";
+  readonly " $fragmentType": "PosterDetailsHovercardContentsBodyFragment";
 };
-export type PosterBylineFragment$key = {
-  readonly " $data"?: PosterBylineFragment$data;
-  readonly " $fragmentSpreads": FragmentRefs<"PosterBylineFragment">;
+export type PosterDetailsHovercardContentsBodyFragment$key = {
+  readonly " $data"?: PosterDetailsHovercardContentsBodyFragment$data;
+  readonly " $fragmentSpreads": FragmentRefs<"PosterDetailsHovercardContentsBodyFragment">;
 };
 
 const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "PosterBylineFragment",
+  "name": "PosterDetailsHovercardContentsBodyFragment",
   "selections": [
     {
       "alias": null,
@@ -46,24 +47,20 @@ const node: ReaderFragment = {
     {
       "alias": null,
       "args": null,
+      "kind": "ScalarField",
+      "name": "joined",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
       "concreteType": "Image",
       "kind": "LinkedField",
       "name": "profilePicture",
       "plural": false,
       "selections": [
         {
-          "args": [
-            {
-              "kind": "Literal",
-              "name": "height",
-              "value": 60
-            },
-            {
-              "kind": "Literal",
-              "name": "width",
-              "value": 60
-            }
-          ],
+          "args": null,
           "kind": "FragmentSpread",
           "name": "ImageFragment"
         }
@@ -75,6 +72,6 @@ const node: ReaderFragment = {
   "abstractKey": "__isActor"
 };
 
-(node as any).hash = "0963a03bc2657c383dd019ca7e14fe61";
+(node as any).hash = "ded249c8376bb374c8c5be005ba8523e";
 
 export default node;
