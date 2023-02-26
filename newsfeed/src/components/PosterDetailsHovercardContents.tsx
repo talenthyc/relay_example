@@ -4,12 +4,12 @@ import { graphql } from "relay-runtime";
 import Image from "./Image";
 import Timestamp from "./Timestamp";
 
-import {usePreloadedQuery} from 'react-relay';
-import type {PreloadedQuery} from 'react-relay';
-
+import { usePreloadedQuery } from "react-relay";
+import type { PreloadedQuery } from "react-relay";
 
 import type { PosterDetailsHovercardContentsQuery as QueryType } from "./__generated__/PosterDetailsHovercardContentsQuery.graphql";
 import type { PosterDetailsHovercardContentsBodyFragment$key } from "./__generated__/PosterDetailsHovercardContentsBodyFragment.graphql";
+import OrganizationKind from "./OrganizationKind";
 
 export const PosterDetailsHovercardContentsQuery = graphql`
   query PosterDetailsHovercardContentsQuery($posterID: ID!) {
@@ -24,12 +24,9 @@ export const PosterDetailsHovercardContentsQuery = graphql`
 export default function PosterDetailsHovercardContents({
   queryRef,
 }: {
-  queryRef: PreloadedQuery<QueryType>,
+  queryRef: PreloadedQuery<QueryType>;
 }): React.ReactElement {
-  const data = usePreloadedQuery(
-    PosterDetailsHovercardContentsQuery,
-    queryRef,
-  );
+  const data = usePreloadedQuery(PosterDetailsHovercardContentsQuery, queryRef);
   return (
     <div className="posterHovercard">
       <PosterDetailsHovercardContentsBody poster={data.node} />
@@ -44,6 +41,14 @@ const PosterDetailsHovercardContentsBodyFragment = graphql`
     joined
     profilePicture {
       ...ImageFragment
+    }
+    ... on Organization {
+      organizationKind
+    }
+    ... on Person {
+      location {
+        name
+      }
     }
   }
 `;
@@ -66,6 +71,12 @@ function PosterDetailsHovercardContentsBody({
       <ul className="posterHovercard__details">
         <li>
           Joined <Timestamp time={data.joined} />
+          {data.location != null && <li>{data.location.name}</li>}
+          {data.organizationKind != null && (
+            <li>
+              <OrganizationKind kind={data.organizationKind} />
+            </li>
+          )}
         </li>
       </ul>
       <div className="posterHovercard__buttons">
